@@ -1,12 +1,16 @@
 FROM php:7.2-fpm
 
-RUN apt-get -y update && apt-get -y install nginx supervisor &&  apt-get -y clean
+RUN apt-get -y update \
+    && apt-get -y install nginx supervisor \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY nginx-config /etc/nginx/
 
 COPY supervisord-config /etc/supervisor/conf.d/
 
-WORKDIR /var/www/html
+WORKDIR /var/www/
 
-VOLUME /var/www/html
+VOLUME /var/www/
 
 EXPOSE 80 443
 

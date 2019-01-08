@@ -6,15 +6,9 @@ To configure NGINX follow the [docs](https://docs.nginx.com/nginx/admin-guide/)
 
 ## How to use the image
 
-### Tags
-
-- latest
-
-- 7.2 
-
 ### Command line
 
-`docker run -v /path/to/src:/var/www/html -p <hostport>:80 -p <hostport>:443 codayblue/php:<tag>`
+`docker run -v /path/to/src:/var/www/public -p <hostport>:80 -p <hostport>:443 codayblue/php:<tag>`
 
 ### Docker Compose
 
@@ -24,7 +18,7 @@ services:
     webservice:
         image: codayblue/php:<tag>
         volume: 
-            - /path/to/src:/var/www/html
+            - /path/to/src:/var/www/public
         ports:
             - <host port>:80
             - <host port>:443
